@@ -27,6 +27,12 @@ function App(props) {
                         <li>
                             <Link to="/admin">Admin Page</Link>
                         </li>
+                        <li>
+                            <Link to="/login">Login Page</Link>
+                        </li>
+                        <li>
+                            <Link to={{ pathname: "/signup", state:{referer: props.location}}}>Sign Up Page</Link>
+                        </li>
                     </ul>
                     <Route exact path="/" component={Home} />
                     <Route path="/login" component={Login} />
