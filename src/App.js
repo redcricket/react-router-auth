@@ -10,14 +10,12 @@ import Signup from "./pages/Signup";
 import { AuthContext } from "./context/auth";
 
 function App(props) {
-    const [authTokens, setAuthTokens] = useState();
-    const setTokens = (data) => {
-        localStorage.setItem("tokens", JSON.stringify(data));
-        setAuthTokens(data);
-    }
+    const [authTokens, setAuthTokens] = useState(undefined);  //type: AuthTokens | undefined (see auth.js)
+
+    console.log("App.state.authTokens: ", authTokens);
 
     return (
-        <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
+        <AuthContext.Provider value={{ authTokens, setAuthTokens }}>
             <Router>
                 <div>
                     <ul>

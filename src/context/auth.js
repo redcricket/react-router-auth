@@ -1,6 +1,17 @@
-import { createContext, useContext } from 'react';
+import {createContext, useContext} from 'react';
 
-export const AuthContext = createContext();
+/*
+interface AuthTokens{
+    key: string
+}
+
+interface AuthCtx{
+    authTokens: AuthTokens;
+    setAuthTokens: (authTokens:AuthTokens) => void;
+}
+ */
+
+export const AuthContext = createContext(null);  //type: AuthCtx | null
 
 export function useAuth() {
     return useContext(AuthContext);
