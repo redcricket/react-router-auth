@@ -21,7 +21,8 @@ function Admin(props) {
         const withCredentials = true;
         const method = 'get';
         axios.request({method, url, withCredentials}).then(response => {
-            console.log(response);
+            console.log('Admin() response is ', response);
+            setUsername(response.data.username);
         });
     } else {
         console.log("Logged out");

@@ -12,7 +12,6 @@ function Login(props) {
     const [password, setPassword] = useState("");
     const {setAuthTokens} = useAuth();
     const referer = props.location.state.referer || '/';
-    // const referer = '/';
 
     const url = 'http://localhost:8000/rest-auth/login/';
     const withCredentials = true;
@@ -20,19 +19,10 @@ function Login(props) {
     const data = {"username": userName, "password": password};
 
     function postLogin() {
-        console.log('postLogin called.');
-        // const something = axios.post('http://127.0.0.1:8000/rest-auth/login/', {userName, password} ).then(
-        // This was the only line I needed to change to make Denny's post:
-        // https://medium.com/better-programming/building-basic-react-authentication-e20a574d5e71
-        // again big thanks to Denny!
-        // ALSO A BIG WARNING!!!
+        // BIG WARNING!!!
         // password is being passed unencrypted and in the clear.
-        // Things to note:
-        // 1) http://127.0.0.1/rest-auth/login is a default endpoint defined on django server running django-rest-auth.
-        // 2) The payload is what the above endpoint expects.
-        const something = axios.request({url, withCredentials, data, method}).then(
+        axios.request({url, withCredentials, data, method}).then(
             result => {
-                console.log('postLogin called. username is ' + userName);
                 if (result.status === 200) {
                     setAuthTokens(result.data);
                     setLoggedIn(true);
@@ -43,12 +33,9 @@ function Login(props) {
                 setIsError(true);
             }
         );
-        console.log('postLogin end. something is :');
-        console.log(something);
     } // end postLogin
 
     if (isLoggedIn) {
-        console.log('postLogin isLoggedIn is true and referer is ' + referer);
         return <Redirect to={referer}/>;
     }
 
